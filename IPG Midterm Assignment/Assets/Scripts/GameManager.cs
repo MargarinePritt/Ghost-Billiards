@@ -25,13 +25,9 @@ public class GameManager : MonoBehaviour
     private bool gameStart=false;
     [HideInInspector]public bool gameOver=false;
 
-    [SerializeField]private GameObject logo;
-    [SerializeField]private GameObject start;
-    [SerializeField]private GameObject howToPlay;
+    [SerializeField]private GameObject startMenu;
     [SerializeField]private GameObject hTP;
-
-    [SerializeField]private TMP_Text theWinnerIs;
-    [SerializeField]private Button replay;
+    [SerializeField]private GameObject endMenu;
 
 	private void Awake()
 	{
@@ -46,8 +42,9 @@ public class GameManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        theWinnerIs.gameObject.SetActive(false);
-        replay.gameObject.SetActive(false);
+        startMenu.SetActive(true);
+        hTP.SetActive(false);
+        endMenu.SetActive(false);
 
         for(int i=1;i<=5;i++){
             ballList.Add(i);
@@ -75,16 +72,13 @@ public class GameManager : MonoBehaviour
             player0ScoreText.gameObject.SetActive(true);
             player1ScoreText.gameObject.SetActive(true);
 
-            logo.SetActive(false);
-            start.SetActive(false);
-            howToPlay.SetActive(false);
+            startMenu.SetActive(false);
         }
 
 		if(gameOver){
             player0ScoreText.gameObject.SetActive(false);
             player1ScoreText.gameObject.SetActive(false);
-            theWinnerIs.gameObject.SetActive(true);
-            replay.gameObject.SetActive(true);
+            endMenu.SetActive(true);
 
             if(player0Score>player1Score){
                 player0.transform.position=new Vector3(0,0,0);
