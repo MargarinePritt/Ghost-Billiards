@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ball
+  - Frame
+  - Gift
   layers:
   - Default
   - TransparentFX

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField]private float speed=500f;
+    public float speed=500f;
     [SerializeField]private int playerNo=-1;
 
     Rigidbody2D rb;
 
     private bool horizontalMovement=false;
     private bool verticalMovement=false;
+
+    [SerializeField]private AudioClip ballPush;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +89,14 @@ public class Movement : MonoBehaviour
 
         if(!horizontalMovement&&!verticalMovement){
             rb.drag=10;
+        }
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.tag=="Ball"){
+            GetComponent<AudioSource>().clip=ballPush;
+            GetComponent<AudioSource>().Play();
         }
 	}
 }
